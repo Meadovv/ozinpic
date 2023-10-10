@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Upload } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
 import DescriptionInformationCard from './DescriptionInformationCard'
@@ -6,6 +6,10 @@ import DescriptionInformationCard from './DescriptionInformationCard'
 const DescriptionUpload = () => {
     const [fileName, setFileName] = useState('Chưa có file')
     const [file, setFile] = useState()
+
+    useEffect(() => {
+        localStorage.setItem('description', 'AAAA')
+    }, [])
 
     return (
         <div>

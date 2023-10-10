@@ -1,0 +1,50 @@
+{
+    "key": "Attribute 1 value(s)",
+    "type": "default",
+    "value": "S,M,L,XL,2XL,3XL"
+},
+{
+    "key": "Attribute 1 global",
+    "type": "default",
+    "value": "1"
+},
+{
+    "key": "Attribute 2 name",
+    "type": "default",
+    "value": "Color"
+},
+{
+    "key": "Attribute 2 value(s)",
+    "type": "default",
+    "value": "Red,Green,Yellow"
+},
+{
+    "key": "Attribute 2 visible",
+    "type": "default",
+    "value": "1"
+},
+{
+    "key": "Attribute 2 global",
+    "type": "default",
+    "value": "1"
+},
+{
+    "key": "Attribute 3 name",
+    "type": "default",
+    "value": "Type"
+},
+{
+    "key": "Attribute 3 value(s)",
+    "type": "default",
+    "value": "T-shirt,T-shirt2"
+},
+{
+    "key": "Attribute 3 visible",
+    "type": "default",
+    "value": "1"
+},
+{
+    "key": "Attribute 3 global",
+    "type": "default",
+    "value": "1"
+}

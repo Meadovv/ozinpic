@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const DescriptionInformationCard = ({ className, file }) => {
+
     const [loading, setLoading] = useState(true)
     const [numRow, setNumRow] = useState(0)
 
@@ -15,6 +16,7 @@ const DescriptionInformationCard = ({ className, file }) => {
 
             setNumRow(rowData.length - 1)
 
+            localStorage.setItem('description', rowData)
         }
         setLoading(false)
     }

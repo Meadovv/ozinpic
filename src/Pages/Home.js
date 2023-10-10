@@ -1,8 +1,13 @@
 import { Button, Space } from "antd"
 import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 const Home = () => {
     const navigate = useNavigate()
+
+    useEffect(() => {
+        localStorage.clear()
+    }, [])
     
     return (
         <div className='m-3'>

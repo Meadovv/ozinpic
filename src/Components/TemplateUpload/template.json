@@ -1,0 +1,211 @@
+[
+    {
+        "key": "Type",
+        "product": {
+            "type": "default",
+            "value": "variable"
+        },
+        "variant": {
+            "type": "default",
+            "value": "variation"
+        }
+    },
+    {
+        "key": "SKU",
+        "product": {
+            "type": "default",
+            "value": "random"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Name",
+        "product": {
+            "type": "match",
+            "value": "Product Name"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Published",
+        "product": {
+            "type": "default",
+            "value": "1"
+        },
+        "variant": {
+            "type": "default",
+            "value": "1"
+        }
+    },
+    {
+        "key": "Visibility in catalog",
+        "product": {
+            "type": "default",
+            "value": "visible"
+        },
+        "variant": {
+            "type": "default",
+            "value": "visible"
+        }
+    },
+    {
+        "key": "Description",
+        "product": {
+            "type": "default",
+            "value": "file"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Tax status",
+        "product": {
+            "type": "default",
+            "value": "taxable"
+        },
+        "variant": {
+            "type": "default",
+            "value": "taxable"
+        }
+    },
+    {
+        "key": "Tax class",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "parent"
+        }
+    },
+    {
+        "key": "In stock?",
+        "product": {
+            "type": "default",
+            "value": "1"
+        },
+        "variant": {
+            "type": "default",
+            "value": "1"
+        }
+    },
+    {
+        "key": "Backorders allowed?",
+        "product": {
+            "type": "default",
+            "value": "0"
+        },
+        "variant": {
+            "type": "default",
+            "value": "0"
+        }
+    },
+    {
+        "key": "Sold individually?",
+        "product": {
+            "type": "default",
+            "value": "0"
+        },
+        "variant": {
+            "type": "default",
+            "value": "0"
+        }
+    },
+    {
+        "key": "Sale price",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Regular price",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Categories",
+        "product": {
+            "type": "default",
+            "value": "file"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Tags",
+        "product": {
+            "type": "default",
+            "value": "file"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Images",
+        "product": {
+            "type": "match",
+            "value": "Product Image File - 1"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Allow customer reviews?",
+        "product": {
+            "type": "default",
+            "value": "1"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Parent",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Position",
+        "product": {
+            "type": "default",
+            "value": "0"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    }
+]

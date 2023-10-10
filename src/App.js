@@ -4,6 +4,7 @@ import Home from './Pages/Home';
 import ProductGenerator from './Pages/ProductGenerator';
 import ProductCrawler from './Pages/ProductCrawler';
 import Error from './Pages/Error';
+import FieldSetting from './Pages/FieldSetting';
 
 const App = () => {
 
@@ -21,6 +22,12 @@ const App = () => {
               <Route path='/product-generator'
                 element={
                   <ProductGenerator />
+                }
+              />
+
+              <Route path='/product-generator/field-setting'
+                element={
+                  <FieldSetting />
                 }
               />
 

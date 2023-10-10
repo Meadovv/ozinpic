@@ -1,7 +1,5 @@
-import { Button, List, Space, Input, Select } from 'antd'
-import { useState } from 'react'
-
-const { Option } = Select;
+import { Button, List, Space, Input, Select, message } from 'antd'
+import { useEffect, useState } from 'react'
 
 const options = [
     {
@@ -16,15 +14,34 @@ const options = [
 
 const TagManager = () => {
 
-    const [tagList, setTagList] = useState([])
-    const [tag, setTag] = useState()
+    const [tagList, setTagList] = useState([
+        {
+            key: 0,
+            data: 'Hot Selling,Clothing',
+            percent: 100
+        }
+    ])
+    const [tag, setTag] = useState(null)
     const [percent, setPercent] = useState(100)
     const [disable, setDisable] = useState(true)
+
+    useEffect(() => {
+        localStorage.setItem('tags', JSON.stringify(tagList))
+    }, [])
+
+    const handleTagList = (values) => {
+        setTagList(values)
+        localStorage.setItem('tags', JSON.stringify(values))
+
+        setTag(null)
+        setPercent(100)
+        setDisable(true)
+    }
 
     return (
         <>
             <hr />
-            <h5>Cài đặt về Tag: </h5>
+            <h5>Cài đặt Tag: </h5>
             <Space.Compact
                 style={{
                     width: '100%'
@@ -35,9 +52,9 @@ const TagManager = () => {
                     onChange={(value) => {
                         setTag(value.target.value)
                     }}
+                    value={tag}
                 />
                 <Select
-                    defaultValue='all'
                     options={options}
                     onChange={(value) => {
                         if(value === 'random') {
@@ -47,6 +64,7 @@ const TagManager = () => {
                             setPercent(100)
                         }
                     }}
+                    value={options[0]}
                 />
                 <Input
                     disabled={disable}
@@ -60,11 +78,15 @@ const TagManager = () => {
                 <Button 
                     type="primary"
                     onClick={() => {
-                        setTagList([...tagList, {
-                            key: Date.now(),
-                            data: tag,
-                            percent: percent
-                        }])
+                        if(tag !== null && percent !== null) {
+                            handleTagList([...tagList, {
+                                key: Date.now() % 1000000,
+                                data: tag,
+                                percent: percent
+                            }])
+                        } else {
+                            message.error("Tag and Tag Percent can not be blank")
+                        }
                     }}
                 >Thêm</Button>
             </Space.Compact>
@@ -81,7 +103,7 @@ const TagManager = () => {
                                 type='primary'
                                 ghost
                                 onClick={() => {
-                                    setTagList(tagList.filter(item => item.key !== tag.key))
+                                    handleTagList(tagList.filter(item => item.key !== tag.key))
                                 }}
                             >
                                 Xóa Tag

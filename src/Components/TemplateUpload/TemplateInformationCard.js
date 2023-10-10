@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { message } from "antd";
 
-const CSVInformationCard = ({ className, file }) => {
+const TemplateInformationCard = ({ className, file }) => {
 
     const [loading, setLoading] = useState(true)
-    const [numRow, setNumRow] = useState(0)
     const [numCol, setNumCol] = useState(0)
 
     const handleFile = (file) => {
@@ -13,16 +13,13 @@ const CSVInformationCard = ({ className, file }) => {
 
         fileReader.onload = (e) => {
             const fileData = e.target.result
-            const rowData = fileData.split('\n')
-            const headerData = rowData[0].split(',')
-
-            setNumCol(headerData.length)
-            setNumRow(rowData.length - 1)
-
-            localStorage.setItem('rowNumber', rowData.length)
-            localStorage.setItem('headers', headerData)
-            localStorage.setItem('rows', fileData)
-
+            try {
+                const json = JSON.parse(fileData)
+                const jsonString = JSON.stringify(json)
+                localStorage.setItem('headerTemplate', jsonString)
+            } catch (e) {
+                message.error('Template File is error')
+            }
         }
         setLoading(false)
     }
@@ -38,11 +35,10 @@ const CSVInformationCard = ({ className, file }) => {
                 loading ? <h5>Đang xử lý...</h5> :
                     <>
                         <h5>Tổng số trường: {numCol}</h5>
-                        <h5>Tổng số Sản phẩm: {numRow}</h5>
                     </>
             }
         </div>
     )
 }
 
-export default CSVInformationCard
+export default TemplateInformationCard
