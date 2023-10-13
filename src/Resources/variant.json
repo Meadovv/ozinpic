@@ -1,0 +1,18 @@
+[
+    {
+        "key": 0,
+        "data": {
+            "name": "Size",
+            "value": "S,M,L,XL,2XL,3XL",
+            "setting": [1, 0, 1, 0, 5, 5]
+        }
+    },
+    {
+        "key": 1,
+        "data": {
+            "name": "Style",
+            "value": "Tshirt,Long Sleeve,Tank Top,Sweatshirt,Hoodie,Women Tshirt",
+            "setting": [10, 20, 10, 10, 20, 20]
+        }
+    }
+]

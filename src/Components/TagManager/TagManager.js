@@ -1,5 +1,6 @@
 import { Button, List, Space, Input, Select, message } from 'antd'
 import { useEffect, useState } from 'react'
+import TagInit from '../../Resources/tag.json'
 
 const options = [
     {
@@ -14,13 +15,7 @@ const options = [
 
 const TagManager = () => {
 
-    const [tagList, setTagList] = useState([
-        {
-            key: 0,
-            data: 'Hot Selling,Clothing',
-            percent: 100
-        }
-    ])
+    const [tagList, setTagList] = useState(TagInit)
     const [tag, setTag] = useState(null)
     const [percent, setPercent] = useState(100)
     const [disable, setDisable] = useState(true)
@@ -82,7 +77,7 @@ const TagManager = () => {
                             handleTagList([...tagList, {
                                 key: Date.now() % 1000000,
                                 data: tag,
-                                percent: percent
+                                percent: Number(percent)
                             }])
                         } else {
                             message.error("Tag and Tag Percent can not be blank")

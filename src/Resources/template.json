@@ -207,5 +207,181 @@
             "type": "default",
             "value": "render"
         }
-    }
+    },
+    {
+		"key": "Meta: rank_math_internal_links_processed",
+		"product": {
+			"type": "default",
+			"value": "1"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: woodmart_sguide_select",
+		"product": {
+			"type": "default",
+			"value": "none"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _woodmart_whb_header",
+		"product": {
+			"type": "default",
+			"value": "none"
+		},
+		"variant": {
+			"type": "default",
+			"value": "none"
+		}
+	},
+	{
+		"key": "Meta: _woodmart_main_layout",
+		"product": {
+			"type": "default",
+			"value": "default"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _woodmart_sidebar_width",
+		"product": {
+			"type": "default",
+			"value": "default"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _woodmart_custom_sidebar",
+		"product": {
+			"type": "default",
+			"value": "none"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _woodmart_single_product_style",
+		"product": {
+			"type": "default",
+			"value": "inherit"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _woodmart_thums_position",
+		"product": {
+			"type": "default",
+			"value": "inherit"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+		{
+		"key": "Meta: _woodmart_extra_position",
+		"product": {
+			"type": "default",
+			"value": "after"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _woodmart_product_design",
+		"product": {
+			"type": "default",
+			"value": "inherit"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _woodmart_product_custom_tab_content_type",
+		"product": {
+			"type": "default",
+			"value": "text"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _woodmart_product_custom_tab_content_type_2",
+		"product": {
+			"type": "default",
+			"value": "text"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _wc_gla_mc_status",
+		"product": {
+			"type": "default",
+			"value": "not_synced"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _wc_gla_visibility",
+		"product": {
+			"type": "default",
+			"value": "dont-sync-and-show"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _last_editor_userd_jetpack",
+		"product": {
+			"type": "default",
+			"value": "classic-editor"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	},
+	{
+		"key": "Meta: _wc_gla_synced_status",
+		"product": {
+			"type": "default",
+			"value": "not_synced"
+		},
+		"variant": {
+			"type": "default",
+			"value": "null"
+		}
+	}
 ]

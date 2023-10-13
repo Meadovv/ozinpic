@@ -12,11 +12,9 @@ const DescriptionInformationCard = ({ className, file }) => {
 
         fileReader.onload = (e) => {
             const fileData = e.target.result
-            const rowData = fileData.split('\n')
+            setNumRow(fileData.split('\n').length - 1)
 
-            setNumRow(rowData.length - 1)
-
-            localStorage.setItem('description', rowData)
+            localStorage.setItem('description', fileData)
         }
         setLoading(false)
     }
