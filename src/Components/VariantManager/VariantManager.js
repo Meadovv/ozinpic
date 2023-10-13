@@ -55,7 +55,7 @@ const VariantManager = () => {
 
     const [variantName, setVariantName] = useState()
     const [variantValue, setVariantValue] = useState()
-    const [totalVariant, setTotalVariant] = useState(36)
+    const [totalVariant, setTotalVariant] = useState(6)
 
     const [modal, setModal] = useState(false)
     const [variant, setVariant] = useState(variantList[0]) // display in modal

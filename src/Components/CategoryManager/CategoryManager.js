@@ -1,7 +1,12 @@
-import { Space, Input, Button, message } from "antd"
-import { useState } from "react"
+import { Space, Input} from "antd"
+import { useEffect } from "react"
 
 const CategoryManager = () => {
+
+    useEffect(() => {
+        localStorage.setItem('category', 'Clothing')
+        localStorage.setItem('categoryCode', 'CL')
+    }, [])
 
     return (
         <>
@@ -15,13 +20,21 @@ const CategoryManager = () => {
                 <Input 
                     addonBefore="Category" 
                     onChange={(value) => {
-                        localStorage.setItem('category', value.target.value)
+                        if(value.target.value) {
+                            localStorage.setItem('category', value.target.value)
+                        } else {
+                            localStorage.setItem('category', 'clothing')
+                        }
                     }}
                 />
                 <Input 
                     addonBefore="Category Code" 
                     onChange={(value) => {
-                        localStorage.setItem('categoryCode', value.target.value)
+                        if(value.target.value) {
+                            localStorage.setItem('categoryCode', value.target.value)
+                        } else {
+                            localStorage.setItem('categoryCode', 'CL')
+                        }
                     }}
                 />
             </Space.Compact>

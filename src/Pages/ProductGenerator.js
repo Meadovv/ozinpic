@@ -7,8 +7,12 @@ import DescriptionUpload from '../Components/DescriptionUpload/DescriptionUpload
 import SaleManager from '../Components/SaleManager/SaleManager'
 import TagManager from '../Components/TagManager/TagManager'
 import TemplateUpload from '../Components/TemplateUpload/TemplateUpload'
+import AttributeManager from '../Components/AttributeManager/AttributeManager'
 import VariantManager from '../Components/VariantManager/VariantManager'
 import CategoryManager from '../Components/CategoryManager/CategoryManager'
+import GtinManager from '../Components/GtinManager/GtinManager'
+import BrandManager from '../Components/BrandManager/BrandManager'
+import CopyManager from '../Components/CopyManager/CopyManager'
 
 function toFixed(num, fixed) {
     var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
@@ -81,6 +85,7 @@ const ProductGenerator = () => {
                 const descriptionData = localStorage.getItem('description').split('\n')
                 const price = Number(localStorage.getItem('sameCost'))
                 const sale = Number(localStorage.getItem('sale'))
+                const attributes = JSON.parse(localStorage.getItem('attributes'))
 
                 // generate variant
 
@@ -122,12 +127,21 @@ const ProductGenerator = () => {
                                 mapHeader.set(element.key, headers.indexOf(element.product.value))
                             }
                         })
-                        variants.forEach((variant, index) => {
+
+                        attributes.forEach((attribute, index) => {
                             csvRow.push(`Attribute ${index + 1} name`)
                             csvRow.push(`Attribute ${index + 1} value(s)`)
                             csvRow.push(`Attribute ${index + 1} visible`)
                             csvRow.push(`Attribute ${index + 1} global`)
                         })
+
+                        variants.forEach((variant, index) => {
+                            csvRow.push(`Attribute ${attributes.length + index + 1} name`)
+                            csvRow.push(`Attribute ${attributes.length + index + 1} value(s)`)
+                            csvRow.push(`Attribute ${attributes.length + index + 1} visible`)
+                            csvRow.push(`Attribute ${attributes.length + index + 1} global`)
+                        })
+
                         csvHeader.push(csvRow)
 
                     } else {// add product
@@ -166,6 +180,13 @@ const ProductGenerator = () => {
                             }
                         })
 
+                        attributes.forEach(attribute => {
+                            csvRow.push(attribute.data.name)
+                            csvRow.push(attribute.data.value)
+                            csvRow.push('1')
+                            csvRow.push('1')
+                        })
+
                         variants.forEach(variant => {
                             csvRow.push(variant.data.name)
                             csvRow.push(variant.data.value)
@@ -188,6 +209,7 @@ const ProductGenerator = () => {
                                         if (item.variant.value === 'render') {
                                             if (item.key === 'Name') {
                                                 csvRow.push(SKUCode + '-' + sku.key)
+                                                return
                                             }
                                             if (item.key === 'Position') {
                                                 csvRow.push(skuIndex + 1)
@@ -212,6 +234,13 @@ const ProductGenerator = () => {
                                         }
                                     }
                                 }
+                            })
+
+                            attributes.forEach(attribute => {
+                                csvRow.push('')
+                                csvRow.push('')
+                                csvRow.push('')
+                                csvRow.push('')
                             })
 
                             // add variant attribute
@@ -309,8 +338,12 @@ const ProductGenerator = () => {
                         <DescriptionUpload />
                         <CategoryManager />
                         <SaleManager />
+                        <GtinManager />
+                        <BrandManager />
+                        <AttributeManager />
                         <VariantManager />
                         <TagManager />
+                        <CopyManager />
                         <Button
                             type='primary'
                             style={{

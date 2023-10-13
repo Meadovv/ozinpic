@@ -344,7 +344,7 @@
 		"key": "Meta: _wc_gla_mc_status",
 		"product": {
 			"type": "default",
-			"value": "not_synced"
+			"value": "null"
 		},
 		"variant": {
 			"type": "default",
@@ -373,11 +373,44 @@
 			"value": "null"
 		}
 	},
+    {
+        "key": "_wc_gla_gtin",
+        "product": {
+            "type": "default",
+            "value": "render"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "rank_math_focus_keyword",
+        "product": {
+            "type": "default",
+            "value": "render"
+        },
+        "variant": {
+            "type": "default",
+            "value": "render"
+        }
+    },
+    {
+        "key": "_wc_gla_brand",
+        "product": {
+            "type": "default",
+            "value": "render"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
 	{
 		"key": "Meta: _wc_gla_synced_status",
 		"product": {
 			"type": "default",
-			"value": "not_synced"
+			"value": "null"
 		},
 		"variant": {
 			"type": "default",

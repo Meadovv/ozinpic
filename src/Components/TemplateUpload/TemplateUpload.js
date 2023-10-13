@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Checkbox, Upload } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
 import TemplateInformationCard from "./TemplateInformationCard";
-import templateJSON from './template'
+import templateJSON from '../../Resources/template.json'
 
 const TemplateUpload = () => {
     const [fileName, setFileName] = useState('Chưa có file')
