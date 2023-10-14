@@ -1,20 +1,20 @@
 import { Button, List, Space, Input, message } from 'antd'
 import { useEffect, useState } from 'react'
-import attributeInit from '../../Resources/attribute.json'
+import duplicateInit from '../../Resources/duplicate.json'
 
 const CopyManager = () => {
 
-    const [attributeList, setVariantList] = useState(attributeInit)
+    const [duplicateList, setDuplicateList] = useState(duplicateInit)
 
     const [attributeName, setVariantName] = useState()
     const [variantValue, setVariantValue] = useState()
 
     useEffect(() => {
-        localStorage.setItem('duplicates', JSON.stringify(attributeList))
+        localStorage.setItem('duplicates', JSON.stringify(duplicateList))
     }, [])
 
     const handleVariantList = (values) => {
-        setVariantList(values)
+        setDuplicateList(values)
         localStorage.setItem('duplicates', JSON.stringify(values))
 
         setVariantName(null)
@@ -31,8 +31,8 @@ const CopyManager = () => {
                 }}
             >
                 <Input
-                    addonBefore="Attribute Name"
-                    addonAfter="Với giá trị"
+                    addonBefore="Tên nhân bản"
+                    addonAfter="Giá trị cộng thêm"
                     value={attributeName}
                     onChange={(value) => {
                         setVariantName(value.target.value)
@@ -40,6 +40,7 @@ const CopyManager = () => {
                 />
                 <Input
                     value={variantValue}
+                    addonAfter='USD'
                     onChange={(value) => {
                         setVariantValue(value.target.value)
                     }}
@@ -54,7 +55,7 @@ const CopyManager = () => {
                         })
 
                         if (attributeName !== null && variantValue) {
-                            handleVariantList([...attributeList, {
+                            handleVariantList([...duplicateList, {
                                 key: Date.now() % 1000000,
                                 data: {
                                     name: attributeName,
@@ -69,7 +70,7 @@ const CopyManager = () => {
             </Space.Compact>
             <List
                 bordered
-                dataSource={attributeList}
+                dataSource={duplicateList}
                 style={{
                     marginTop: 10
                 }}
@@ -84,16 +85,17 @@ const CopyManager = () => {
                                         ghost
                                         danger
                                         onClick={() => {
-                                            handleVariantList(attributeList.filter(item => item.key !== variant.key))
+                                            handleVariantList(duplicateList.filter(item => item.key !== variant.key))
                                         }}
                                     >
-                                        Xóa Attribute
+                                        Xóa
                                     </Button>
                                 </Space>
                             ]}
                         >
                             <List.Item.Meta
-                                title={variant.data.name + ": " + variant.data.value}
+                                title={variant.data.name}
+                                description={'Giá: +' + variant.data.value}
                             />
                         </List.Item>
                     )

@@ -1,0 +1,23 @@
+[
+    {
+        "key": 0,
+        "data": {
+            "name": "T-Shirt",
+            "value": 0
+        }
+    },
+    {
+        "key": 1,
+        "data": {
+            "name": "Sweatshirt",
+            "value": 10
+        }
+    },
+    {
+        "key": 2,
+        "data": {
+            "name": "Hoodie",
+            "value": 15
+        }
+    }
+]

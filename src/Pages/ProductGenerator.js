@@ -102,7 +102,7 @@ const ProductGenerator = () => {
                 const attributes = JSON.parse(localStorage.getItem('attributes'))
                 const gtin = localStorage.getItem('gtin')
                 const brand = localStorage.getItem('brand')
-                const duplicates = localStorage.getItem('copy').split(',')
+                const duplicates = JSON.parse(localStorage.getItem('duplicates'))
 
                 // generate variant
 
@@ -166,7 +166,7 @@ const ProductGenerator = () => {
 
                         } else {// add product
                             let productName = getName(rowData[mapHeader.get('Name')])
-                            rowData[mapHeader.get('Name')] = "Unisex " + productName + " " + duplicate
+                            rowData[mapHeader.get('Name')] = "Unisex " + productName + " " + duplicate.data.name
 
                             headerTemplate.forEach(element => {
                                 if (element.product.type === 'default') {
@@ -174,7 +174,7 @@ const ProductGenerator = () => {
                                         csvRow.push('')
                                     } else {
                                         if (element.key === 'SKU') {
-                                            SKUCode = duplicate + "-" + SKUGen(categoryCode, dataIndex)
+                                            SKUCode = duplicate.data.name + "-" + SKUGen(categoryCode, dataIndex)
                                             csvRow.push(SKUCode)
                                             return
                                         }
@@ -189,7 +189,7 @@ const ProductGenerator = () => {
                                             return
                                         }
                                         if (element.key === 'Short description') {
-                                            csvRow.push("Unisex " + productName + " " + duplicate + " best Gift for Fan!")
+                                            csvRow.push("Unisex " + productName + " " + duplicate.data.name + " best Gift for Fan!")
                                             return
                                         }
                                         if (element.key === 'Description') {
@@ -228,7 +228,7 @@ const ProductGenerator = () => {
                             attributes.forEach(attribute => {
                                 csvRow.push(attribute.data.name)
                                 if(attribute.data.value === 'Render') {
-                                    csvRow.push(duplicate)
+                                    csvRow.push(duplicate.data.name)
                                 } else {
                                     csvRow.push(attribute.data.value)
                                 }
@@ -269,11 +269,11 @@ const ProductGenerator = () => {
                                                     return
                                                 }
                                                 if (item.key === 'Regular price') {
-                                                    csvRow.push(toFixed(price + sku.price, 2))
+                                                    csvRow.push(toFixed(price + sku.price + duplicate.data.value, 2))
                                                     return
                                                 }
                                                 if (item.key === 'Sale price') {
-                                                    const regularPrice = price + sku.price
+                                                    const regularPrice = price + sku.price + duplicate.data.value
                                                     const salePrice = regularPrice - regularPrice * (sale / 100)
                                                     csvRow.push(toFixed(salePrice, 2))
                                                     return

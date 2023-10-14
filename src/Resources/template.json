@@ -927,7 +927,7 @@
         "key": "Meta: _wc_gla_visibility",
         "product": {
             "type": "default",
-            "value": "sync-and-show"
+            "value": "dont-sync-and-show"
         },
         "variant": {
             "type": "default",
@@ -1081,7 +1081,7 @@
         "key": "Meta: _wc_gla_sync_status",
         "product": {
             "type": "default",
-            "value": "synced"
+            "value": "null"
         },
         "variant": {
             "type": "default",

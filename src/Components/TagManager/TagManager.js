@@ -97,6 +97,7 @@ const TagManager = () => {
                             <Button
                                 type='primary'
                                 ghost
+                                danger
                                 onClick={() => {
                                     handleTagList(tagList.filter(item => item.key !== tag.key))
                                 }}
