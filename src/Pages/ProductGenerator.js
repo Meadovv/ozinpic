@@ -14,6 +14,21 @@ import GtinManager from '../Components/GtinManager/GtinManager'
 import BrandManager from '../Components/BrandManager/BrandManager'
 import CopyManager from '../Components/CopyManager/CopyManager'
 
+import sizeTable from '../Resources/sizeTable.json'
+
+function getName(name) {
+    name = name.replace('T-Shirt', '')
+    name = name.replace('T-shirt', '')
+    name = name.replace('Hoodie', '')
+    name = name.replace('Sweatshirt', '')
+    name = name.replace('Unisex', '')
+    name = name.replace(/[0-9]+/g, '');
+
+    name = name.replace(/\s{2,}/g, ' ').trim()
+
+    return name
+}
+
 function toFixed(num, fixed) {
     var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
     return num.toString().match(re)[0];
@@ -37,19 +52,18 @@ function shuffle(array) {
     return array;
 }
 
-const SKUGen = (categoryCode, index) => {
+const SKUGen = (categoryCode, dataIndex) => {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0')
     const mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
     const yyyy = today.getFullYear()
     const hour = String(today.getHours()).padStart(2, '0')
     const minute = String(today.getMinutes()).padStart(2, '0')
-    const sec = String(today.getSeconds()).padStart(2, '0')
 
-    const time = hour + minute + sec
+    const time = hour + minute
     const date = yyyy + mm + dd;
 
-    return categoryCode + '-' + date + '-' + time + '-' + index
+    return categoryCode + '-' + date + '-' + time + '-' + dataIndex
 }
 const ProductGenerator = () => {
 
@@ -86,24 +100,27 @@ const ProductGenerator = () => {
                 const price = Number(localStorage.getItem('sameCost'))
                 const sale = Number(localStorage.getItem('sale'))
                 const attributes = JSON.parse(localStorage.getItem('attributes'))
+                const gtin = localStorage.getItem('gtin')
+                const brand = localStorage.getItem('brand')
+                const duplicates = localStorage.getItem('copy').split(',')
 
                 // generate variant
 
                 let skuArray = []
-                variants[0].data.value.split(',').forEach((item, index) => {
+                variants[0].data.value.split(',').forEach((item, dataIndex) => {
                     skuArray.push({
                         key: item,
-                        price: variants[0].data.setting[index]
+                        price: variants[0].data.setting[dataIndex]
                     })
                 })
                 let nextArray = []
                 let next = 1
                 while (next !== variants.length) {
                     skuArray.forEach(preItem => {
-                        variants[next].data.value.split(',').forEach((nextItem, index) => {
+                        variants[next].data.value.split(',').forEach((nextItem, dataIndex) => {
                             nextArray.push({
                                 key: preItem.key + '-' + nextItem,
-                                price: preItem.price + variants[next].data.setting[index]
+                                price: preItem.price + variants[next].data.setting[dataIndex]
                             })
                         })
                     })
@@ -117,155 +134,187 @@ const ProductGenerator = () => {
                 let csvRow = []
                 let SKUCode = null
 
-                fileData.forEach((data, index) => {
-                    const rowData = data.split(',')
-                    csvRow = []
-                    if (index === 0) {  // add header
-                        headerTemplate.forEach(element => {
-                            csvRow.push(element.key)
-                            if (element.product.type === 'match') {
-                                mapHeader.set(element.key, headers.indexOf(element.product.value))
-                            }
-                        })
-
-                        attributes.forEach((attribute, index) => {
-                            csvRow.push(`Attribute ${index + 1} name`)
-                            csvRow.push(`Attribute ${index + 1} value(s)`)
-                            csvRow.push(`Attribute ${index + 1} visible`)
-                            csvRow.push(`Attribute ${index + 1} global`)
-                        })
-
-                        variants.forEach((variant, index) => {
-                            csvRow.push(`Attribute ${attributes.length + index + 1} name`)
-                            csvRow.push(`Attribute ${attributes.length + index + 1} value(s)`)
-                            csvRow.push(`Attribute ${attributes.length + index + 1} visible`)
-                            csvRow.push(`Attribute ${attributes.length + index + 1} global`)
-                        })
-
-                        csvHeader.push(csvRow)
-
-                    } else {// add product
-                        headerTemplate.forEach(element => {
-                            if (element.product.type === 'default') {
-                                if (element.product.value === 'null') {
-                                    csvRow.push('')
-                                } else {
-                                    if (element.key === 'SKU') {
-                                        SKUCode = SKUGen(categoryCode, index)
-                                        csvRow.push(SKUCode)
-                                        return
-                                    }
-                                    if (element.key === 'Tags') {
-                                        let tagString = ''
-                                        tags.forEach(tag => {
-                                            if (tag.percent === 100) {
-                                                tagString = tagString + tag.data + ','
-                                            }
-                                        })
-                                        csvRow.push(tagString)
-                                        return
-                                    }
-                                    if (element.key === 'Description') {
-                                        csvRow.push(descriptionData[(index - 1) % descriptionData.length])
-                                        return
-                                    }
-                                    if (element.key === 'Categories') {
-                                        csvRow.push(category)
-                                        return
-                                    }
-                                    csvRow.push(element.product.value)
+                duplicates.forEach((duplicate, duplicateIndex) => {
+                    fileData.forEach((data, dataIndex) => {
+                        const rowData = data.split(',')
+                        csvRow = []
+                        if (dataIndex === 0) {  // add header
+                            if(duplicateIndex !== 0) return;
+                            headerTemplate.forEach((element, index) => {
+                                if(element.key === 'Tags') TagColumnIndex = index
+                                csvRow.push(element.key)
+                                if (element.product.type === 'match') {
+                                    mapHeader.set(element.key, headers.indexOf(element.product.value))
                                 }
-                            } else {
-                                csvRow.push(rowData[mapHeader.get(element.key)])
-                            }
-                        })
+                            })
 
-                        attributes.forEach(attribute => {
-                            csvRow.push(attribute.data.name)
-                            csvRow.push(attribute.data.value)
-                            csvRow.push('1')
-                            csvRow.push('1')
-                        })
+                            attributes.forEach((attribute, dataIndex) => {
+                                csvRow.push(`Attribute ${dataIndex + 1} name`)
+                                csvRow.push(`Attribute ${dataIndex + 1} value(s)`)
+                                csvRow.push(`Attribute ${dataIndex + 1} visible`)
+                                csvRow.push(`Attribute ${dataIndex + 1} global`)
+                            })
 
-                        variants.forEach(variant => {
-                            csvRow.push(variant.data.name)
-                            csvRow.push(variant.data.value)
-                            csvRow.push('1') // visible
-                            csvRow.push('1') // global
-                        })
+                            variants.forEach((variant, dataIndex) => {
+                                csvRow.push(`Attribute ${attributes.length + dataIndex + 1} name`)
+                                csvRow.push(`Attribute ${attributes.length + dataIndex + 1} value(s)`)
+                                csvRow.push(`Attribute ${attributes.length + dataIndex + 1} visible`)
+                                csvRow.push(`Attribute ${attributes.length + dataIndex + 1} global`)
+                            })
 
-                        csvProduct.push(csvRow)
-                    }
+                            csvHeader.push(csvRow)
 
-                    // add variant
-                    if (index !== 0) {
-                        skuArray.forEach((sku, skuIndex) => {
-                            csvRow = []
-                            headerTemplate.forEach((item) => {
-                                if (item.variant.type === 'default') {
-                                    if (item.variant.value === 'null') {
+                        } else {// add product
+                            let productName = getName(rowData[mapHeader.get('Name')])
+                            rowData[mapHeader.get('Name')] = "Unisex " + productName + " " + duplicate
+
+                            headerTemplate.forEach(element => {
+                                if (element.product.type === 'default') {
+                                    if (element.product.value === 'null') {
                                         csvRow.push('')
                                     } else {
-                                        if (item.variant.value === 'render') {
-                                            if (item.key === 'Name') {
-                                                csvRow.push(SKUCode + '-' + sku.key)
-                                                return
-                                            }
-                                            if (item.key === 'Position') {
-                                                csvRow.push(skuIndex + 1)
-                                                return
-                                            }
-                                            if (item.key === 'Parent') {
-                                                csvRow.push(SKUCode)
-                                                return
-                                            }
-                                            if (item.key === 'Regular price') {
-                                                csvRow.push(toFixed(price + sku.price, 2))
-                                                return
-                                            }
-                                            if (item.key === 'Sale price') {
-                                                const regularPrice = price + sku.price
-                                                const salePrice = regularPrice - regularPrice * (sale / 100)
-                                                csvRow.push(toFixed(salePrice, 2))
-                                                return
-                                            }
-                                        } else {
-                                            csvRow.push(item.variant.value)
+                                        if (element.key === 'SKU') {
+                                            SKUCode = duplicate + "-" + SKUGen(categoryCode, dataIndex)
+                                            csvRow.push(SKUCode)
+                                            return
                                         }
+                                        if (element.key === 'Tags') {
+                                            let tagString = ''
+                                            tags.forEach(tag => {
+                                                if (tag.percent === 100) {
+                                                    tagString = tagString + tag.data + ','
+                                                }
+                                            })
+                                            csvRow.push(tagString)
+                                            return
+                                        }
+                                        if (element.key === 'Short description') {
+                                            csvRow.push("Unisex " + productName + " " + duplicate + " best Gift for Fan!")
+                                            return
+                                        }
+                                        if (element.key === 'Description') {
+                                            csvRow.push(descriptionData[(dataIndex - 1 + duplicateIndex) % descriptionData.length])
+                                            return
+                                        }
+                                        if (element.key === 'Categories') {
+                                            csvRow.push(category)
+                                            return
+                                        }
+                                        if (element.key === 'Meta: _rank_math_gtin_code') {
+                                            csvRow.push(gtin)
+                                            return
+                                        }
+                                        if (element.key === 'Meta: _wc_gla_gtin') {
+                                            csvRow.push(gtin)
+                                            return
+                                        }
+                                        if (element.key === 'Meta: rank_math_focus_keyword') {
+                                            csvRow.push(productName);
+                                            return
+                                        }
+                                        if (element.key === 'Meta: _wc_gla_brand') {
+                                            csvRow.push(brand)
+                                            return
+                                        }
+                                        csvRow.push(element.product.value)
                                     }
+                                } else {
+                                    if (element.key === 'Images') {
+                                        csvRow.push(rowData[mapHeader.get(element.key)] + "," + sizeTable.link)
+                                    } else csvRow.push(rowData[mapHeader.get(element.key)])
                                 }
                             })
 
                             attributes.forEach(attribute => {
-                                csvRow.push('')
-                                csvRow.push('')
-                                csvRow.push('')
-                                csvRow.push('')
+                                csvRow.push(attribute.data.name)
+                                if(attribute.data.value === 'Render') {
+                                    csvRow.push(duplicate)
+                                } else {
+                                    csvRow.push(attribute.data.value)
+                                }
+                                csvRow.push('1')
+                                csvRow.push('1')
                             })
 
-                            // add variant attribute
-                            sku.key.split('-').forEach((key, index) => {
-                                csvRow.push(variants[index].data.name)
-                                csvRow.push(key)
-                                csvRow.push('')
-                                csvRow.push(1)
+                            variants.forEach(variant => {
+                                csvRow.push(variant.data.name)
+                                csvRow.push(variant.data.value)
+                                csvRow.push('1') // visible
+                                csvRow.push('1') // global
                             })
 
+                            csvProduct.push(csvRow)
+                        }
 
-                            csvVariant.push(csvRow)
-                        })
-                    }
-                    setPercent((index / fileData.length) * 100)
+                        // add variant
+                        if (dataIndex !== 0) {
+                            skuArray.forEach((sku, skuIndex) => {
+                                csvRow = []
+                                headerTemplate.forEach((item) => {
+                                    if (item.variant.type === 'default') {
+                                        if (item.variant.value === 'null') {
+                                            csvRow.push('')
+                                        } else {
+                                            if (item.variant.value === 'render') {
+                                                if (item.key === 'Name') {
+                                                    csvRow.push(SKUCode + '-' + sku.key)
+                                                    return
+                                                }
+                                                if (item.key === 'Position') {
+                                                    csvRow.push(skuIndex + 1)
+                                                    return
+                                                }
+                                                if (item.key === 'Parent') {
+                                                    csvRow.push(SKUCode)
+                                                    return
+                                                }
+                                                if (item.key === 'Regular price') {
+                                                    csvRow.push(toFixed(price + sku.price, 2))
+                                                    return
+                                                }
+                                                if (item.key === 'Sale price') {
+                                                    const regularPrice = price + sku.price
+                                                    const salePrice = regularPrice - regularPrice * (sale / 100)
+                                                    csvRow.push(toFixed(salePrice, 2))
+                                                    return
+                                                }
+                                            } else {
+                                                csvRow.push(item.variant.value)
+                                            }
+                                        }
+                                    }
+                                })
+
+                                attributes.forEach((attribute, dataIndex) => {
+                                    csvRow.push('')
+                                    csvRow.push('')
+                                    csvRow.push('')
+                                    csvRow.push('')
+                                })
+
+                                // add variant attribute
+                                sku.key.split('-').forEach((key, dataIndex) => {
+                                    csvRow.push(variants[dataIndex].data.name)
+                                    csvRow.push(key)
+                                    csvRow.push('')
+                                    csvRow.push(1)
+                                })
+
+
+                                csvVariant.push(csvRow)
+                            })
+                        }
+                        setPercent((dataIndex / fileData.length) * 100)
+                    })
                 })
+
 
                 // generate custom tags
 
-                console.log(csvProduct)
-
                 tags.forEach(tag => {
-                    if(Number(tag.percent) !== 100) {
+                    if (Number(tag.percent) !== 100) {
                         csvProduct = shuffle(csvProduct)
-                        for(let i = 0; i < Math.round(Number(tag.percent) / 100 * Number(csvProduct.length)); ++i) {
+                        for (let i = 0; i < Math.round(Number(tag.percent) / 100 * Number(csvProduct.length)); ++i) {
                             csvProduct[i][TagColumnIndex] = csvProduct[i][TagColumnIndex] + tag.data + ","
                         }
                     }
@@ -305,7 +354,7 @@ const ProductGenerator = () => {
 
                 const link = document.createElement('a')
                 link.href = csvContent
-                link.download = 'export.csv'
+                link.download = 'ozinpic-' + localStorage.getItem('fileName')
                 link.click()
                 setLoading(false)
 
@@ -321,6 +370,9 @@ const ProductGenerator = () => {
                     <div className='m-3'>
                         <h1>Product Generator</h1>
                         <Space>
+                            <Button onClick={() => {
+                                navigate('/')
+                            }}>Home</Button>
                             <Button
                                 onClick={() => {
                                     localStorage.clear()

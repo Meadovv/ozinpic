@@ -3,7 +3,7 @@ import { Input } from 'antd'
 
 const GtinManager = () => {
 
-    const [value, setValue] = useState('handmade')
+    const [value, setValue] = useState('Handmade')
 
     useEffect(() => {
         localStorage.setItem('gtin', value)
@@ -19,7 +19,7 @@ const GtinManager = () => {
                     if(value.target.value) {
                         setValue(value.target.value)
                     } else {
-                        setValue('handmade')
+                        setValue('Handmade')
                     }
                 }}
             />

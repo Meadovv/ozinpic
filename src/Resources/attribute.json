@@ -5,5 +5,12 @@
             "name": "Color",
             "value": "Black"
         }
+    },
+    {
+        "key": 1,
+        "data": {
+            "name": "Style",
+            "value": "Render"
+        }
     }
 ]

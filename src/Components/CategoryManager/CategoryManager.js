@@ -1,12 +1,15 @@
 import { Space, Input} from "antd"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 const CategoryManager = () => {
 
+    const [category, setCategory] = useState('Clothing')
+    const [categoryCode, setCategoryCode] = useState('CL')
+
     useEffect(() => {
-        localStorage.setItem('category', 'Clothing')
-        localStorage.setItem('categoryCode', 'CL')
-    }, [])
+        localStorage.setItem('category', category)
+        localStorage.setItem('categoryCode', categoryCode)
+    }, [category, categoryCode, setCategory, setCategoryCode])
 
     return (
         <>
@@ -19,21 +22,23 @@ const CategoryManager = () => {
             >
                 <Input 
                     addonBefore="Category" 
+                    defaultValue={category}
                     onChange={(value) => {
                         if(value.target.value) {
-                            localStorage.setItem('category', value.target.value)
+                            setCategory(value.target.value)
                         } else {
-                            localStorage.setItem('category', 'clothing')
+                            setCategory('Clothing')
                         }
                     }}
                 />
                 <Input 
                     addonBefore="Category Code" 
+                    defaultValue={categoryCode}
                     onChange={(value) => {
                         if(value.target.value) {
-                            localStorage.setItem('categoryCode', value.target.value)
+                            setCategoryCode(value.target.value)
                         } else {
-                            localStorage.setItem('categoryCode', 'CL')
+                            setCategoryCode('CL')
                         }
                     }}
                 />

@@ -1,5 +1,16 @@
 [
     {
+        "key": "ID",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
         "key": "Type",
         "product": {
             "type": "default",
@@ -14,7 +25,7 @@
         "key": "SKU",
         "product": {
             "type": "default",
-            "value": "random"
+            "value": "render"
         },
         "variant": {
             "type": "default",
@@ -44,6 +55,17 @@
         }
     },
     {
+        "key": "Is featured?",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
         "key": "Visibility in catalog",
         "product": {
             "type": "default",
@@ -55,10 +77,43 @@
         }
     },
     {
+        "key": "Short description",
+        "product": {
+            "type": "default",
+            "value": "render"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
         "key": "Description",
         "product": {
             "type": "default",
             "value": "render"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Date sale price starts",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Date sale price ends",
+        "product": {
+            "type": "default",
+            "value": "null"
         },
         "variant": {
             "type": "default",
@@ -99,6 +154,28 @@
         }
     },
     {
+        "key": "Stock",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Low stock amount",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
         "key": "Backorders allowed?",
         "product": {
             "type": "default",
@@ -118,6 +195,72 @@
         "variant": {
             "type": "default",
             "value": "0"
+        }
+    },
+    {
+        "key": "Weight (kg)",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Length (cm)",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Width (cm)",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Height (cm)",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Allow customer reviews?",
+        "product": {
+            "type": "default",
+            "value": "0"
+        },
+        "variant": {
+            "type": "default",
+            "value": "0"
+        }
+    },
+    {
+        "key": "Purchase note",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
         }
     },
     {
@@ -165,6 +308,17 @@
         }
     },
     {
+        "key": "Shipping class",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
         "key": "Images",
         "product": {
             "type": "match",
@@ -176,10 +330,21 @@
         }
     },
     {
-        "key": "Allow customer reviews?",
+        "key": "Download limit",
         "product": {
             "type": "default",
-            "value": "1"
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Download expiry days",
+        "product": {
+            "type": "default",
+            "value": "null"
         },
         "variant": {
             "type": "default",
@@ -198,6 +363,61 @@
         }
     },
     {
+        "key": "Grouped products",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Upsells",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Cross-sells",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "External URL",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Button text",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
         "key": "Position",
         "product": {
             "type": "default",
@@ -209,172 +429,62 @@
         }
     },
     {
-		"key": "Meta: rank_math_internal_links_processed",
-		"product": {
-			"type": "default",
-			"value": "1"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: woodmart_sguide_select",
-		"product": {
-			"type": "default",
-			"value": "none"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: _woodmart_whb_header",
-		"product": {
-			"type": "default",
-			"value": "none"
-		},
-		"variant": {
-			"type": "default",
-			"value": "none"
-		}
-	},
-	{
-		"key": "Meta: _woodmart_main_layout",
-		"product": {
-			"type": "default",
-			"value": "default"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: _woodmart_sidebar_width",
-		"product": {
-			"type": "default",
-			"value": "default"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: _woodmart_custom_sidebar",
-		"product": {
-			"type": "default",
-			"value": "none"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: _woodmart_single_product_style",
-		"product": {
-			"type": "default",
-			"value": "inherit"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: _woodmart_thums_position",
-		"product": {
-			"type": "default",
-			"value": "inherit"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-		{
-		"key": "Meta: _woodmart_extra_position",
-		"product": {
-			"type": "default",
-			"value": "after"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: _woodmart_product_design",
-		"product": {
-			"type": "default",
-			"value": "inherit"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: _woodmart_product_custom_tab_content_type",
-		"product": {
-			"type": "default",
-			"value": "text"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: _woodmart_product_custom_tab_content_type_2",
-		"product": {
-			"type": "default",
-			"value": "text"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: _wc_gla_mc_status",
-		"product": {
-			"type": "default",
-			"value": "null"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: _wc_gla_visibility",
-		"product": {
-			"type": "default",
-			"value": "dont-sync-and-show"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
-	{
-		"key": "Meta: _last_editor_userd_jetpack",
-		"product": {
-			"type": "default",
-			"value": "classic-editor"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	},
+        "key": "Meta: rank_math_internal_links_processed",
+        "product": {
+            "type": "default",
+            "value": "1"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
     {
-        "key": "_wc_gla_gtin",
+        "key": "Meta: rank_math_seo_score",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _wp_page_template",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: woodmart_sguide_select",
+        "product": {
+            "type": "default",
+            "value": "none"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: woodmart_price_unit_of_measure",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _rank_math_gtin_code",
         "product": {
             "type": "default",
             "value": "render"
@@ -385,18 +495,491 @@
         }
     },
     {
-        "key": "rank_math_focus_keyword",
+        "key": "Meta: woodmart_total_stock_quantity",
         "product": {
             "type": "default",
-            "value": "render"
+            "value": "null"
         },
         "variant": {
             "type": "default",
-            "value": "render"
+            "value": "null"
         }
     },
     {
-        "key": "_wc_gla_brand",
+        "key": "Meta: _product_360_image_gallery",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: audio_sample",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _audio_sample",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: sold_in_week",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _sold_in_week",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: sold_to_day",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _sold_to_day",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: sold_in_much",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _sold_in_much",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: total_sold",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _total_sold",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_whb_header",
+        "product": {
+            "type": "default",
+            "value": "none"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_main_layout",
+        "product": {
+            "type": "default",
+            "value": "default"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_sidebar_width",
+        "product": {
+            "type": "default",
+            "value": "default"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_custom_sidebar",
+        "product": {
+            "type": "default",
+            "value": "none"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_new_label",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_new_label_date",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_swatches_attribute",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_related_off",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product_video",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product_hashtag",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_single_product_style",
+        "product": {
+            "type": "default",
+            "value": "inherit"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_thums_position",
+        "product": {
+            "type": "default",
+            "value": "inherit"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_extra_content",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_extra_position",
+        "product": {
+            "type": "default",
+            "value": "inherit"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product_design",
+        "product": {
+            "type": "default",
+            "value": "inherit"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product-background",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_hide_tabs_titles",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product_custom_tab_title",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product_custom_tab_content_type",
+        "product": {
+            "type": "default",
+            "value": "text"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product_custom_tab_content",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product_custom_tab_html_block",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product_custom_tab_title_2",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product_custom_tab_content_type_2",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product_custom_tab_content_2",
+        "product": {
+            "type": "default",
+            "value": "text"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_product_custom_tab_html_block_2",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: rank_math_primary_product_cat",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _wc_gla_mc_status",
+        "product": {
+            "type": "default",
+            "value": "approved"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _wc_gla_visibility",
+        "product": {
+            "type": "default",
+            "value": "sync-and-show"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: rank_math_analytic_object_id",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _last_editor_used_jetpack",
+        "product": {
+            "type": "default",
+            "value": "classic-editor"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _woodmart_exclude_show_single_variation",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: rs_page_bg_color",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _wc_gla_gtin",
         "product": {
             "type": "default",
             "value": "render"
@@ -406,15 +989,147 @@
             "value": "null"
         }
     },
-	{
-		"key": "Meta: _wc_gla_synced_status",
-		"product": {
-			"type": "default",
-			"value": "null"
-		},
-		"variant": {
-			"type": "default",
-			"value": "null"
-		}
-	}
+    {
+        "key": "Meta: rank_math_focus_keyword",
+        "product": {
+            "type": "default",
+            "value": "render"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: rank_math_facebook_enable_image_overlay",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _elementor_edit_mode",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _elementor_template_type",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _elementor_version",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _wc_gla_brand",
+        "product": {
+            "type": "default",
+            "value": "render"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: rank_math_description",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _wp_old_date",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _wc_gla_sync_status",
+        "product": {
+            "type": "default",
+            "value": "synced"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _wc_gla_synced_at",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _wc_gla_size",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _wc_gla_sizeSystem",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    },
+    {
+        "key": "Meta: _wc_gla_sizeType",
+        "product": {
+            "type": "default",
+            "value": "null"
+        },
+        "variant": {
+            "type": "default",
+            "value": "null"
+        }
+    }
 ]

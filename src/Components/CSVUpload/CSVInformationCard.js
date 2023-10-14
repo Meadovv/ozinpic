@@ -9,6 +9,7 @@ const CSVInformationCard = ({ className, file }) => {
     const handleFile = (file) => {
         const fileReader = new FileReader();
 
+        localStorage.setItem('fileName', file.name)
         fileReader.readAsText(file)
 
         fileReader.onload = (e) => {

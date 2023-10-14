@@ -2,9 +2,9 @@
     {
         "key": 0,
         "data": {
-            "name": "Size",
+            "name": "Sizes",
             "value": "S,M,L,XL,2XL,3XL",
-            "setting": [0, 12, 17]
+            "setting": [0, 0, 0, 0, 2, 3]
         }
     }
 ]
