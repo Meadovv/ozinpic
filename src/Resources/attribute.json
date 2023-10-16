@@ -9,26 +9,19 @@
     {
         "key": 1,
         "data": {
-            "name": "SKU",
-            "value": "Render"
-        }
-    },
-    {
-        "key": 2,
-        "data": {
             "name": "Gender",
             "value": "Unisex"
         }
     },
     {
-        "key": 3,
+        "key": 2,
         "data": {
             "name": "Color",
             "value": "Black"
         }
     },
     {
-        "key": 4,
+        "key": 3,
         "data": {
             "name": "Style",
             "value": "Render"
