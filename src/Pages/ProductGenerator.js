@@ -17,6 +17,8 @@ import CopyManager from '../Components/CopyManager/CopyManager'
 import sizeTable from '../Resources/sizeTable.json'
 
 function getName(name) {
+
+    name = name.replace(/['"]+/g, '')
     name = name.replace('T-Shirt', '')
     name = name.replace('T-shirt', '')
     name = name.replace('Hoodie', '')
