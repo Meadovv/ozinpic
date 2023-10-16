@@ -2,12 +2,33 @@
     {
         "key": 0,
         "data": {
+            "name": "GTIN",
+            "value": "Handmade"
+        }
+    },
+    {
+        "key": 1,
+        "data": {
+            "name": "SKU",
+            "value": "Render"
+        }
+    },
+    {
+        "key": 2,
+        "data": {
+            "name": "Gender",
+            "value": "Unisex"
+        }
+    },
+    {
+        "key": 3,
+        "data": {
             "name": "Color",
             "value": "Black"
         }
     },
     {
-        "key": 1,
+        "key": 4,
         "data": {
             "name": "Style",
             "value": "Render"

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import { Button, Space, Input, Select } from 'antd'
+import { Button, Space, Input, Select, message } from 'antd'
 import { useState } from "react"
-import axios from "axios"
 
 const ProductCrawler = () => {
 
@@ -17,37 +16,20 @@ const ProductCrawler = () => {
         }
     ]
 
-    const [allowCrawl, setAllowCrawl] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [webLink, setWebLink] = useState(webData[0].value)
+    const [keyword, setKeyword] = useState()
 
     const handleCheck = async () => {
 
-        // let config = {
-        //     headers: {
-        //         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-        //         'Connection': 'keep-alive',
-        //         'Accept-Encoding': 'gzip, deflate, br',
-        //         'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.47',
-        //     },
-        //     params: {
-        //         'page': 1,
-        //         'query': 'Avenger%20Tshirt'
-        //     }
-        // }
+        if(!keyword) {
+            message.error('Nhập từ khóa trước')
+            return
+        }
 
         setLoading(true)
-        // axios.get('https://www.redbubble.com/shop/', config)
-        //     .then(response => {
-        //         console.log(response)
-        //     })
-        //     .catch(err => {
-        //         console.log(err)
-        //     })
+
         setLoading(false)
-    }
-
-    const handleCrawl = () => {
-
     }
 
     return (
@@ -66,22 +48,23 @@ const ProductCrawler = () => {
             >
                 <Input
                     addonBefore='Nhập từ khóa'
+                    onChange={(value) => {
+                        setKeyword(value.target.value)
+                    }}
                 />
                 <Select
                     options={webData}
                     defaultValue={webData[0]}
+                    onChange={(value) => {
+                        setWebLink(value.value)
+                    }}
                 />
             </Space.Compact>
-            <Space className="mt-3">
-                <Button
-                    loading={loading}
-                    onClick={handleCheck}
-                >Kiểm tra</Button>
-                <Button
-                    disabled={!allowCrawl}
-                    onClick={handleCrawl}
-                >CRAWL</Button>
-            </Space>
+            <Button
+                className="mt-3"
+                loading={loading}
+                onClick={handleCheck}
+            >Kiểm tra</Button>
         </div>
     )
 }
