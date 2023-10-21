@@ -41,7 +41,6 @@ const SettingModal = ({ data, open, onSave, onCancel }) => {
             open={open}
             title='Chỉnh sửa thông tin'
             onOk={() => {
-
                 onSave({
                     id: data.key,
                     value: form.getFieldValue()
@@ -59,7 +58,7 @@ const SettingModal = ({ data, open, onSave, onCancel }) => {
                 form={form}
                 layout="vertical"
             >
-                <h4>Link sản phẩm: <a href={data.link} target="_blank">{data.name}</a></h4>
+                <h4>Link sản phẩm: <a href={data.link} target="_blank" rel="noopener noreferrer">{data.name}</a></h4>
 
                 <Form.Item
                     label={'[Mặc định] ' + data.name}
@@ -124,9 +123,10 @@ const ProductCrawler = () => {
         setLoading(true)
         await axios.post('http://localhost:8000/get', {
             website: web,
-            html: file
+            html: file,
+            keyword: 'null'
         }).then(response => {
-            if (response.data.success === 'true') {
+            if (response.data.success) {
                 message.success('Total: ' + response.data.product.total)
                 setProductList(response.data.product.list)
                 localStorage.setItem('data', JSON.stringify(response.data.product.list))
@@ -204,6 +204,14 @@ const ProductCrawler = () => {
                     ghost
                 >Clear Cache</Button>
 
+                <Select
+                    defaultValue={webSelection[0].value}
+                    options={webSelection}
+                    onChange={(value) => {
+                        setWeb(value)
+                    }}
+                />
+
                 <Upload
                     beforeUpload={(file) => {
                         const fileReader = new FileReader()
@@ -215,16 +223,10 @@ const ProductCrawler = () => {
                     }}
                     showUploadList={false}
                 >
-                    <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                    <Button
+                        icon={<UploadOutlined />}
+                    >Click to Upload</Button>
                 </Upload>
-
-                <Select
-                    defaultValue={webSelection[0].value}
-                    options={webSelection}
-                    onChange={(value) => {
-                        setWeb(value)
-                    }}
-                />
 
                 <Button
                     loading={loading}

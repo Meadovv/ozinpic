@@ -20,6 +20,9 @@ const Home = () => {
                     <Button onClick={() => 
                         navigate('/product-crawler')
                     }>Product Crawler</Button>
+                    <Button onClick={() => 
+                        navigate('/product-add')
+                    }>Product Add</Button>
                 </Space>
             </div>
         </div>

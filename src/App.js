@@ -5,6 +5,7 @@ import ProductGenerator from './Pages/ProductGenerator';
 import ProductCrawler from './Pages/ProductCrawler';
 import Error from './Pages/Error';
 import FieldSetting from './Pages/FieldSetting';
+import ProductAdd from './Pages/ProductAdd';
 
 const App = () => {
 
@@ -34,6 +35,12 @@ const App = () => {
               <Route path='/product-crawler'
                 element={
                   <ProductCrawler />
+                }
+              />
+
+              <Route path='/product-add'
+                element={
+                  <ProductAdd />
                 }
               />
 

@@ -1,12 +1,10 @@
 import time
+import requests
 
-from selenium import webdriver
 from bs4 import BeautifulSoup
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 app = FastAPI()
 
@@ -75,11 +73,33 @@ async def crawl(payload: CheckBody):
         }
 
     if(payload.website == 'amazon'):
+
+        mySoup = BeautifulSoup(payload.html, 'html.parser')
+
+        id: int = 1
+
+        for link in mySoup.find_all('a', {'class': 'a-link-normal s-no-outline'}):
+            productLink = 'https://www.amazon.com' + link.get('href')
+            imgTag = link.find('img', {'class': 's-image'})
+            productName = imgTag.get('alt')
+            imageLink = imgTag.get('src')
+            imageAlt = imgTag.get('alt')
+            product.append({
+                    'add': 1,
+                    'key': id,
+                    'link': productLink,
+                    'name': productName,
+                    'image': {
+                        'link': imageLink,
+                        'alt': imageAlt
+                    }
+                })
+            id = id + 1
         return {
             "success": "true",
             "product": {
-                "total": 0,
-                "list": []
+                "total": id - 1,
+                "list": product
             },
             "time": round(time.time() * 1000)
         }
