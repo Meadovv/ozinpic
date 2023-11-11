@@ -90,8 +90,8 @@
     {
         "key": "Description",
         "product": {
-            "type": "default",
-            "value": "render"
+            "type": "match",
+            "value": "Description"
         },
         "variant": {
             "type": "default",

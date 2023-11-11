@@ -19,15 +19,19 @@ import SKU from '../Components/SKU/SKU'
 
 function getName(name) {
 
-    name = name.replace(/['"]+/g, '')
-    name = name.replace('T-Shirt', '')
-    name = name.replace('T-shirt', '')
-    name = name.replace('Hoodie', '')
-    name = name.replace('Sweatshirt', '')
-    name = name.replace('Unisex', '')
-    name = name.replace(/[0-9]+/g, '');
+    try {
+        name = name.replace(/['"]+/g, '')
+        name = name.replace('T-Shirt', '')
+        name = name.replace('T-shirt', '')
+        name = name.replace('Hoodie', '')
+        name = name.replace('Sweatshirt', '')
+        name = name.replace('Unisex', '')
+        name = name.replace(/[0-9]+/g, '');
+    
+        name = name.replace(/\s{2,}/g, ' ').trim()
+    } catch (err) {
 
-    name = name.replace(/\s{2,}/g, ' ').trim()
+    }
 
     return name
 }
@@ -158,7 +162,6 @@ const ProductGenerator = () => {
                                 if(element.key === 'Tags') TagColumnIndex = index
                                 csvRow.push(element.key)
                                 if (element.product.type === 'match') {
-                                    console.log(element.product.value)
                                     mapHeader.set(element.key, headers.indexOf(element.product.value))
                                 }
                             })
@@ -207,10 +210,6 @@ const ProductGenerator = () => {
                                             csvRow.push("Unisex " + productName + " " + duplicate.data.name + " best Gift for Fan!")
                                             return
                                         }
-                                        if (element.key === 'Description') {
-                                            csvRow.push(descriptionData[(dataIndex - 1 + duplicateIndex) % descriptionData.length])
-                                            return
-                                        }
                                         if (element.key === 'Categories') {
                                             csvRow.push(category)
                                             return
@@ -236,8 +235,19 @@ const ProductGenerator = () => {
                                 } else {
                                     if (element.key === 'Images') {
                                         csvRow.push(rowData[mapHeader.get(element.key)] + "," + sizeTable.link)
-                                        console.log(rowData[mapHeader.get(element.key)])
-                                    } else csvRow.push(rowData[mapHeader.get(element.key)])
+                                        return
+                                    }
+
+                                    if (element.key === 'Description') {
+                                        if(descriptionData[0] === "auto") {
+                                            csvRow.push(rowData[mapHeader.get(element.key)])
+                                        } else {
+                                            csvRow.push(descriptionData[(dataIndex - 1 + duplicateIndex) % descriptionData.length])
+                                        }
+                                        return
+                                    }
+
+                                    csvRow.push(rowData[mapHeader.get(element.key)])
                                 }
                             })
 

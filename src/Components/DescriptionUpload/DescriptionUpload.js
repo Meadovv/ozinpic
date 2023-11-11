@@ -8,7 +8,7 @@ const DescriptionUpload = () => {
     const [file, setFile] = useState()
 
     useEffect(() => {
-        localStorage.setItem('description', 'AAAA')
+        localStorage.setItem('description', 'auto')
     }, [])
 
     return (
