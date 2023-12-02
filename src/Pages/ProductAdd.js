@@ -16,9 +16,9 @@ const ProductAdd = () => {
             return
         }
 
-        let csvContent = "data:text/csv;charset=utf-8,Product Name,Description,Product Image File - 1,Ozinpic\n"
+        let csvContent = "data:text/csv;charset=utf-8,Product Name,Product Image File - 1\n"
         productList.forEach(product => {
-            csvContent = csvContent + product.name + "," + product.description + "," + product.image + ",Ozinpic\n"
+            csvContent = csvContent + product.name + "," + product.image + "\n"
         })
 
         const link = document.createElement('a')

@@ -1,5 +1,5 @@
 import { Button, message, Progress, Space } from 'antd'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import CSVUpload from '../Components/CSVUpload/CSVUpload'
@@ -15,7 +15,6 @@ import BrandManager from '../Components/BrandManager/BrandManager'
 import CopyManager from '../Components/CopyManager/CopyManager'
 
 import sizeTable from '../Resources/sizeTable.json'
-import SKU from '../Components/SKU/SKU'
 
 function getName(name) {
 
@@ -59,30 +58,19 @@ function shuffle(array) {
     return array;
 }
 
-function randomIntArrayInRange (fromArray, length) {
-    const toArray = shuffle(fromArray);
-    const ansArray = []
-    for(let i = 0; i <= length; ++i) ansArray.push(toArray[i])
-
-    return ansArray
-}
-
 const SKUGen = (categoryCode, dataIndex) => {
-    // const today = new Date();
-    // const dd = String(today.getDate()).padStart(2, '0')
-    // const mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
-    // const yyyy = today.getFullYear()
-    // const hour = String(today.getHours()).padStart(2, '0')
-    // const minute = String(today.getMinutes()).padStart(2, '0')
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0')
+    const mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+    const yyyy = today.getFullYear()
+    const hour = String(today.getHours()).padStart(2, '0')
+    const minute = String(today.getMinutes()).padStart(2, '0')
 
-    // const time = hour + minute
-    // const date = yyyy + mm + dd;
+    const time = hour + minute
+    const date = yyyy + mm + dd;
 
-    const userSKUCode = localStorage.getItem('sku-code')
-
-    return categoryCode + '-' + userSKUCode + '-' + dataIndex
+    return categoryCode + '-' + date + '-' + time + '-' + dataIndex
 }
-
 const ProductGenerator = () => {
 
     const navigate = useNavigate()
@@ -154,7 +142,7 @@ const ProductGenerator = () => {
 
                 duplicates.forEach((duplicate, duplicateIndex) => {
                     fileData.forEach((data, dataIndex) => {
-                        const rowData = data.replace(/(\r\n|\n|\r)/gm, "").split(',')
+                        const rowData = data.split(',')
                         csvRow = []
                         if (dataIndex === 0) {  // add header
                             if(duplicateIndex !== 0) return;
@@ -235,19 +223,7 @@ const ProductGenerator = () => {
                                 } else {
                                     if (element.key === 'Images') {
                                         csvRow.push(rowData[mapHeader.get(element.key)] + "," + sizeTable.link)
-                                        return
-                                    }
-
-                                    if (element.key === 'Description') {
-                                        if(descriptionData[0] === "auto") {
-                                            csvRow.push(rowData[mapHeader.get(element.key)])
-                                        } else {
-                                            csvRow.push(descriptionData[(dataIndex - 1 + duplicateIndex) % descriptionData.length])
-                                        }
-                                        return
-                                    }
-
-                                    csvRow.push(rowData[mapHeader.get(element.key)])
+                                    } else csvRow.push(rowData[mapHeader.get(element.key)])
                                 }
                             })
 
@@ -295,12 +271,12 @@ const ProductGenerator = () => {
                                                     return
                                                 }
                                                 if (item.key === 'Regular price') {
-                                                    csvRow.push(toFixed(price + sku.price + Number(duplicate.data.value), 2))
+                                                    csvRow.push(toFixed(price + sku.price + duplicate.data.value, 2))
                                                     return
                                                 }
                                                 if (item.key === 'Sale price') {
-                                                    const regularPrice = price + sku.price + Number(duplicate.data.value)
-                                                    const salePrice = Number(regularPrice - regularPrice * (sale / 100))
+                                                    const regularPrice = price + sku.price + duplicate.data.value
+                                                    const salePrice = regularPrice - regularPrice * (sale / 100)
                                                     csvRow.push(toFixed(salePrice, 2))
                                                     return
                                                 }
@@ -337,17 +313,11 @@ const ProductGenerator = () => {
 
                 // generate custom tags
 
-                const fromArray = []
-                for(let i = 0; i < csvProduct.length; ++i) {
-                    fromArray.push(i)
-                }
-
                 tags.forEach(tag => {
                     if (Number(tag.percent) !== 100) {
-                        if(Math.round(Number(tag.percent) / 100 * Number(csvProduct.length)) <= 0) return
-                        const randomArray = randomIntArrayInRange(fromArray, Math.round(Number(tag.percent) / 100 * Number(csvProduct.length)))
+                        csvProduct = shuffle(csvProduct)
                         for (let i = 0; i < Math.round(Number(tag.percent) / 100 * Number(csvProduct.length)); ++i) {
-                            csvProduct[randomArray[i]][TagColumnIndex] = csvProduct[randomArray[i]][TagColumnIndex] + tag.data + ","
+                            csvProduct[i][TagColumnIndex] = csvProduct[i][TagColumnIndex] + tag.data + ","
                         }
                     }
                 })
@@ -381,6 +351,8 @@ const ProductGenerator = () => {
                     })
                     csvContent = csvContent + rowContent + "\n"
                 })
+
+
 
                 const link = document.createElement('a')
                 link.href = csvContent
@@ -420,7 +392,6 @@ const ProductGenerator = () => {
                         <DescriptionUpload />
                         <CategoryManager />
                         <SaleManager />
-                        <SKU />
                         <GtinManager />
                         <BrandManager />
                         <AttributeManager />
