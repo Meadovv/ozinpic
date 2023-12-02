@@ -1,4 +1,4 @@
-import { Space, Button, Form, Input, Table, Popconfirm, message, Modal } from 'antd'
+import { Space, Button, Form, Input, Table, Popconfirm, message} from 'antd'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -6,19 +6,21 @@ const ProductAdd = () => {
 
     const navigate = useNavigate()
     const [form] = Form.useForm()
-    const [modalForm] = Form.useForm()
+
+
+
     const [productList, setProductList] = useState([])
 
     const Export = () => {
 
-        if (productList.length < 1) {
+        if(productList.length < 1) {
             message.error('Product List can not be null')
             return
         }
 
-        let csvContent = "data:text/csv;charset=utf-8,\"Product Name\",\"Product Image File - 1\"\n"
+        let csvContent = "data:text/csv;charset=utf-8,Product Name,Product Image File - 1,Ozinpic\n"
         productList.forEach(product => {
-            csvContent = csvContent + "\"" + product.name + "\"" + "," + "\"" + product.image + "\"" + "\n"
+            csvContent = csvContent + product.name + "," + product.image + ",Ozinpic\n"
         })
 
         const link = document.createElement('a')
@@ -36,24 +38,18 @@ const ProductAdd = () => {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
-            width: '30%',
+            width: '45%',
         },
         {
             title: 'Link',
             dataIndex: 'image',
             key: 'image',
-            width: '30%',
-        },
-        {
-            title: 'Description',
-            dataIndex: 'description',
-            key: 'description',
-            width: '30%',
+            width: '50%',
         },
         {
             title: 'Action',
             key: 'action',
-            width: '10%',
+            width: '5%',
             render: (item) => (
                 <Space>
                     <Button type='primary' ghost danger
@@ -61,128 +57,13 @@ const ProductAdd = () => {
                             setProductList(productList.filter(product => product.key !== item.key))
                         }}
                     >Delete</Button>
-                    <Button type='primary' ghost
-                        onClick={() => {
-                            modalForm.setFieldValue('key', item.key)
-                            modalForm.setFieldValue('name', item.name)
-                            modalForm.setFieldValue('image', item.image)
-                            modalForm.setFieldValue('description', item.description)
-                            openModal()
-                        }}
-                    >Edit</Button>
                 </Space>
             )
         }
     ]
 
-    const [modalStatus, setModalStatus] = useState(false);
-
-    const openModal = () => {
-        setModalStatus(true)
-    }
-
-    const closeModal = () => {
-        setModalStatus(false)
-    }
-
-    const onCreate = (values) => {
-        let index = -1;
-        productList.forEach((product, i) => {
-            if(product.key === values.key) index = i;
-        })
-
-        if(index > -1) {
-            let backupArr = [...productList]
-            backupArr[index] = values
-            setProductList(backupArr)
-        }
-    }
-
     return (
         <div className="m-3">
-            <Modal
-                width={1200}
-                title="EDIT CONTENT"
-                open={modalStatus}
-                onOk={() => {
-                    modalForm.validateFields()
-                        .then((values) => {
-                            form.resetFields()
-                            onCreate(values)
-                        })
-                        .catch((err) => {
-                            console.log(err)
-                        })
-                        closeModal()
-                }}
-                onCancel={closeModal}
-            >
-                <Form
-                    form={modalForm}
-                    layout='vertical'
-                >
-                    <Form.Item
-                        name='key'
-                        label='Key'
-                        hidden
-                    >
-                        <Input></Input>
-                    </Form.Item>
-                    <Form.Item
-                        name='name'
-                        label='Name'
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Cần có',
-                            },
-                        ]}
-                        style={{
-                            display: 'inline-block',
-                            width: '50%',
-                            padding: 5
-                        }}
-                    >
-                        <Input></Input>
-                    </Form.Item>
-
-                    <Form.Item
-                        name='image'
-                        label='Image'
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Cần có',
-                            },
-                        ]}
-                        style={{
-                            display: 'inline-block',
-                            width: '50%',
-                            padding: 5
-                        }}
-                    >
-                        <Input></Input>
-                    </Form.Item>
-
-                    <Form.Item
-                        name='description'
-                        label='Description'
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Cần có',
-                            },
-                        ]}
-                        style={{
-                            display: 'inline-block',
-                            width: '100%',
-                            padding: 5
-                        }}
-                    >
-                        <Input.TextArea></Input.TextArea>
-                    </Form.Item>
-                </Form>
-            </Modal>
             <h1>Product Add</h1>
             <Space>
                 <Button
@@ -201,10 +82,7 @@ const ProductAdd = () => {
                 </Popconfirm>
             </Space>
             <hr />
-            <Table
-                columns={columns}
-                dataSource={productList}
-            />
+            <Table columns={columns} dataSource={productList} />
             <hr />
             <Form
                 form={form}
@@ -214,7 +92,6 @@ const ProductAdd = () => {
                         key: Date.now(),
                         name: value.name,
                         image: value.image,
-                        description: value.description,
                     }])
                     form.resetFields()
                 }}
@@ -255,25 +132,7 @@ const ProductAdd = () => {
                     <Input></Input>
                 </Form.Item>
 
-                <Form.Item
-                    name='description'
-                    label='Description'
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Cần có',
-                        },
-                    ]}
-                    style={{
-                        display: 'inline-block',
-                        width: '100%',
-                        padding: 5
-                    }}
-                >
-                    <Input.TextArea></Input.TextArea>
-                </Form.Item>
-
-                <Button type='primary' htmlType='submit'>Add</Button>
+                <Button type='primary' htmlType='submit'>Thêm</Button>
             </Form>
         </div>
     )
