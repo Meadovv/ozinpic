@@ -13,7 +13,7 @@ const Home = () => {
         <div className='m-3'>
             <h1>Chào mừng trở lại</h1>
             <div>
-                <Space direction="horizontal">
+                <Space direction="vertical">
                     <Button onClick={() => {
                         navigate('/product-generator')
                     }}>Product Generator</Button>
@@ -23,6 +23,9 @@ const Home = () => {
                     <Button onClick={() => 
                         navigate('/product-add')
                     }>Product Add</Button>
+                    <Button onClick={() => 
+                        navigate('/text-replacement')
+                    }>Text Replacement</Button>
                 </Space>
             </div>
         </div>

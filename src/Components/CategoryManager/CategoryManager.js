@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 const CategoryManager = () => {
 
-    const [category, setCategory] = useState('Clothing')
+    const [category, setCategory] = useState('Clothing, Unisex')
     const [categoryCode, setCategoryCode] = useState('CL')
 
     useEffect(() => {

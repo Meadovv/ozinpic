@@ -6,6 +6,7 @@ import ProductCrawler from './Pages/ProductCrawler';
 import Error from './Pages/Error';
 import FieldSetting from './Pages/FieldSetting';
 import ProductAdd from './Pages/ProductAdd';
+import TextReplacement from './Pages/TextReplacement';
 
 const App = () => {
 
@@ -41,6 +42,12 @@ const App = () => {
               <Route path='/product-add'
                 element={
                   <ProductAdd />
+                }
+              />
+
+              <Route path='/text-replacement'
+                element={
+                  <TextReplacement />
                 }
               />
 
